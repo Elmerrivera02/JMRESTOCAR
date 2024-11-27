@@ -135,7 +135,7 @@ $resultado = mysqli_query($conexion, $sql);
                                 <td>
                                     <button class='btn-modify' onclick='modifyReservation({$res['id']})'>Modificar</button>
                                     <button class='btn-delete' onclick='deleteReservation({$res['id']})'>Eliminar</button>
- </td>
+                                </td>
                               </tr>";
                     }
                 } else {
