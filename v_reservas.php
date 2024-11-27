@@ -1,3 +1,17 @@
+<?php
+session_start(); // Inicia la sesión
+
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION['usuario_id'])) {
+    // Redirigir a la página de inicio de sesión si no está autenticado
+    header("Location: login.php");
+    exit();
+}
+
+// Obtén el usuario_id del usuario autenticado
+$usuario_id = $_SESSION['usuario_id'];
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -106,8 +120,8 @@
                     die("Error de conexión: " . mysqli_connect_error());
                 }
 
-                // Consultar las reservas
-                $sql = "SELECT * FROM reservas";
+                // Consultar las reservas del usuario autenticado
+                $sql = "SELECT * FROM reservas WHERE usuario_id = '$usuario_id'";
                 $resultado = mysqli_query($conexion, $sql);
 
                 if ($resultado && mysqli_num_rows($resultado) > 0) {
