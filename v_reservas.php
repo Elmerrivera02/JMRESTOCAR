@@ -1,3 +1,28 @@
+<?php
+session_start(); // Asegúrate de iniciar la sesión
+
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION['usuario_id'])) {
+    // Redirigir a la página de inicio de sesión si no está autenticado
+    header("Location: login.php");
+    exit();
+}
+
+// Obtén el usuario_id del usuario autenticado
+$usuario_id = $_SESSION['usuario_id'];
+
+// Conexión a la base de datos
+$conexion = mysqli_connect("localhost", "root", "", "login_register_bd");
+
+if (!$conexion) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
+
+// Consultar las reservas del usuario autenticado
+$sql = "SELECT * FROM reservas WHERE usuario_id = '$usuario_id'";
+$resultado = mysqli_query($conexion, $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -99,17 +124,6 @@
             </thead>
             <tbody>
                 <?php
-                // Conexión a la base de datos
-                $conexion = mysqli_connect("localhost", "root", "", "login_register_bd");
-
-                if (!$conexion) {
-                    die("Error de conexión: " . mysqli_connect_error());
-                }
-
-                // Consultar las reservas
-                $sql = "SELECT * FROM reservas";
-                $resultado = mysqli_query($conexion, $sql);
-
                 if ($resultado && mysqli_num_rows($resultado) > 0) {
                     while ($res = mysqli_fetch_assoc($resultado)) {
                         echo "<tr>
@@ -121,30 +135,27 @@
                                 <td>
                                     <button class='btn-modify' onclick='modifyReservation({$res['id']})'>Modificar</button>
                                     <button class='btn-delete' onclick='deleteReservation({$res['id']})'>Eliminar</button>
-                                </td>
+ </td>
                               </tr>";
                     }
                 } else {
                     echo "<tr><td colspan='6'>No hay reservas disponibles.</td></tr>";
                 }
-
-                // Cerrar la conexión
-                mysqli_close($conexion);
                 ?>
             </tbody>
         </table>
     </div>
-
     <script>
         function modifyReservation(id) {
-            // Redirige a una página para modificar la reserva con el ID proporcionado
-            window.location.href = `modificar_reserva.php?id=${id}`;
+            // Lógica para modificar la reserva
+            alert("Modificar reserva con ID: " + id);
         }
 
         function deleteReservation(id) {
-            // Confirma y elimina la reserva
+            // Lógica para eliminar la reserva
             if (confirm("¿Estás seguro de que deseas eliminar esta reserva?")) {
-                window.location.href = `eliminar_reserva.php?id=${id}`;
+                // Aquí puedes agregar la lógica para eliminar la reserva
+                alert("Reserva con ID: " + id + " eliminada.");
             }
         }
     </script>
