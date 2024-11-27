@@ -1,3 +1,18 @@
+<?php
+session_start(); // Inicia la sesión
+
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION['usuario_id'])) {
+    // Redirigir a la página de inicio de sesión si no está autenticado
+    header("Location: login.php");
+    exit();
+}
+
+// Obtén el usuario_id del usuario autenticado
+$usuario_id = $_SESSION['usuario_id'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -39,6 +54,15 @@
             background-color: #4c2b2b;
             color: white;
         }
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+        }
+
         .btn-modify {
             background-color: #4caf50;
             color: white;
@@ -82,6 +106,16 @@
 <body>
     <div class="container">
         <h1>ReservApp</h1>
+        <?php
+        // Mostrar el mensaje dentro del body
+        if (isset($_GET['mensaje'])) {
+            if ($_GET['mensaje'] == 'actualizada') {
+                echo "<p id='mensaje-flash' class='success-message'>Reserva actualizada exitosamente.</p>";
+            } elseif ($_GET['mensaje'] == 'eliminada') {
+                echo "<p id='mensaje-flash' class='success-message'>Reserva eliminada exitosamente.</p>";
+            }
+        }
+        ?>
         <div class="header-buttons">
             <a href="reservas.php"><button>Reservar</button></a>
             <a href="menu.php"><button>Inicio</button></a>
@@ -106,8 +140,8 @@
                     die("Error de conexión: " . mysqli_connect_error());
                 }
 
-                // Consultar las reservas
-                $sql = "SELECT * FROM reservas";
+                // Consultar las reservas del usuario autenticado
+                $sql = "SELECT * FROM reservas WHERE usuario_id = '$usuario_id'";
                 $resultado = mysqli_query($conexion, $sql);
 
                 if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -134,6 +168,19 @@
             </tbody>
         </table>
     </div>
+    <!--<script>
+        function modifyReservation(id) {
+            // Redirige a una página para modificar la reserva con el ID proporcionado
+            window.location.href = "modificar_reserva.php?id=" + id;
+        }
+
+        function deleteReservation(id) {
+            // Confirma y elimina la reserva
+            if (confirm("¿Estás seguro de que deseas eliminar esta reserva?")) {
+                window.location.href = "eliminar_reserva.php?id=" + id;
+            }
+        }
+    </script>-->
 
     <script>
         function modifyReservation(id) {
@@ -146,7 +193,19 @@
             if (confirm("¿Estás seguro de que deseas eliminar esta reserva?")) {
                 window.location.href = `eliminar_reserva.php?id=${id}`;
             }
+        }
+
+       document.addEventListener('DOMContentLoaded', function() {
+        // Selecciona el elemento del mensaje
+        var mensajeFlash = document.getElementById('mensaje-flash');
+        if (mensajeFlash) {
+            // Después de 5 segundos (5000 milisegundos), oculta el mensaje
+            setTimeout(function() {
+                mensajeFlash.style.display = 'none';
+            }, 3000);
         }
-    </script>
+    });
+    </script>
+    
 </body>
 </html>

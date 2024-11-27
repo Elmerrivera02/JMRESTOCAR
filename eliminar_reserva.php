@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
     // Ejecutar la consulta
     if (mysqli_query($conexion, $sql)) {
         // Si la eliminación fue exitosa, redirigir a la página de reservas
-        header("Location: v_reservas.php");
+        header("Location: v_reservas.php?mensaje=eliminada");
         exit();  // Asegúrate de usar exit() después de header para detener la ejecución
     } else {
         // Si hay un error al eliminar, mostrar un mensaje

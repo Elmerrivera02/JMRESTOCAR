@@ -1,5 +1,15 @@
 <?php
-session_start();
+session_start(); // Inicia la sesión
+
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION['usuario_id'])) {
+    // Redirige al usuario a la página de inicio de sesión si no está autenticado
+    header("Location: login.php");
+    exit();
+}
+
+// Obtén el usuario_id del usuario autenticado
+$usuario_id = $_SESSION['usuario_id'];
 
 // Procesamiento del formulario de reserva
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -12,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Obtener los datos del formulario
-        $usuario_id = $_SESSION['usuario_id']; // Suponiendo que el usuario autenticado tenga un id en sesión
         $mesa_id = $_POST['selectedTable'];
         $fecha = $_POST['date'];
         $hora = $_POST['time'];
@@ -43,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $stmt_insert->bind_param("iiss", $usuario_id, $mesa_id, $fecha, $hora);
                 if ($stmt_insert->execute()) {
                     // Redirigir a la página de confirmación
-                    header("Location: http://localhost/JMRESTOCAR/confirmar_reserva.php?mesa_id=$mesa_id&fecha=$fecha&hora=$hora");
+                    header("Location: confirmar_reserva.php?mesa_id=$mesa_id&fecha=$fecha&hora=$hora");
                     exit;
                 } else {
                     echo json_encode([
@@ -66,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
