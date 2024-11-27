@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #4c2822;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.container {
+    width: 450px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ddd;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+header h1 {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.menu button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.profile {
+    font-size: 1.2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.reservation {
+    background-color: #e5e5e5;
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.title {
+    background-color: #666;
+    color: #fff;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+    text-align: left;
+}
+
+.confirmation {
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 0 0 10px 10px;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.checkmark-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.confirmation p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #333;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+.my-reservations {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 0.8em;
+}
+
+footer .contact, footer .social {
+    color: #fff;
+}
+
+.social a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px;
+}

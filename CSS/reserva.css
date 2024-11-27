@@ -1,0 +1,121 @@
+/*reserva*/
+body {
+    background-color: #4A2424;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #3B1E1E;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.reservation-form {
+    background-color: #ffffff;
+    color: #4A2424;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
+
+.reservation-form h1 {
+    text-align: center;
+}
+
+.reservation-form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.reservation-form input,
+.reservation-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.tables {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.table {
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.table.available {
+    background-color: #00E4A1;
+    color: #ffffff;
+}
+
+.table.reserved {
+    background-color: #ddd;
+    color: #888;
+    pointer-events: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #00E4A1;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #02B580;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #3B1E1E;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 5px;
+}
