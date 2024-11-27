@@ -108,7 +108,6 @@
 
                 // Consultar las reservas
                 $sql = "SELECT * FROM reservas";
-                $sql = "SELECT * FROM usuarios";
                 $resultado = mysqli_query($conexion, $sql);
 
                 if ($resultado && mysqli_num_rows($resultado) > 0) {
