@@ -8,6 +8,18 @@ $correo = mysqli_real_escape_string($conexion, $_POST['correo']);
 $usuario = mysqli_real_escape_string($conexion, $_POST['usuario']);
 $contraseña = mysqli_real_escape_string($conexion, $_POST['contraseña']);
 
+if (
+    strlen($contraseña) < 8 ||
+    !preg_match('/[A-Z]/', $contraseña) || // Al menos una letra mayúscula
+    !preg_match('/[0-9]/', $contraseña) || // Al menos un número
+    !preg_match('/[\W_]/', $contraseña)   // Al menos un carácter especial
+) {
+    mostrar_alerta_y_redireccionar(
+        "La contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial",
+        "../menu_principal.php"
+    );
+}
+
 // Verificar que el correo tenga un formato válido
 if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $correo)) {
     mostrar_alerta_y_redireccionar("Por favor, ingresa un correo válido", "../menu_principal.php");

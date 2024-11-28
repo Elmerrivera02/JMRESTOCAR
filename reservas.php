@@ -1,15 +1,5 @@
 <?php
-session_start(); // Inicia la sesión
-
-// Verifica si el usuario está autenticado
-if (!isset($_SESSION['usuario_id'])) {
-    // Redirige al usuario a la página de inicio de sesión si no está autenticado
-    header("Location: login.php");
-    exit();
-}
-
-// Obtén el usuario_id del usuario autenticado
-$usuario_id = $_SESSION['usuario_id'];
+session_start();
 
 // Procesamiento del formulario de reserva
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -22,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Obtener los datos del formulario
+        $usuario_id = $_SESSION['usuario_id'];
         $mesa_id = $_POST['selectedTable'];
         $fecha = $_POST['date'];
         $hora = $_POST['time'];
