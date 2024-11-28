@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['usuario_id'])) {
+    // Redirigir al usuario a la página de inicio de sesión
+    header("Location: index.php");
+    exit();
+}
+
+$usuario_id = $_SESSION['usuario_id'];
 // Procesamiento del formulario de reserva
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -42,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $stmt_insert = $conexion->prepare($sql_insert);
                 $stmt_insert->bind_param("iiss", $usuario_id, $mesa_id, $fecha, $hora);
                 if ($stmt_insert->execute()) {
-                    // Redirigir a la página de confirmación
+                    // Redirigir a la página deseada
                     header("Location: confirmar_reserva.php?mesa_id=$mesa_id&fecha=$fecha&hora=$hora");
                     exit;
                 } else {
@@ -66,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit();
 }
 ?>
+
 
 
 <!DOCTYPE html>

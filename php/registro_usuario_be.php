@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'conexion_be.php';
 
 // Recibir y limpiar datos del formulario
@@ -46,6 +46,8 @@ $query = "INSERT INTO usuarios(nombre_completo, correo, usuario, contraseña)
 $ejecutar = mysqli_query($conexion, $query);
 
 if ($ejecutar) {
+    $usuario_id = mysqli_insert_id($conexion);
+    $_SESSION['usuario_id'] = $usuario_id;
     mostrar_alerta_y_redireccionar("Usuario almacenado exitosamente", "../menu.php");
 } else {
     mostrar_alerta_y_redireccionar("Inténtalo de nuevo. Usuario no almacenado", "../menu_principal.php");
