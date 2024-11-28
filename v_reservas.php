@@ -112,7 +112,7 @@ $usuario_id = $_SESSION['usuario_id'];
             if ($_GET['mensaje'] == 'actualizada') {
                 echo "<p id='mensaje-flash' class='success-message'>Reserva actualizada exitosamente.</p>";
             } elseif ($_GET['mensaje'] == 'eliminada') {
-                echo "<p id='mensaje-flash' class='success-message'>Reserva eliminada exitosamente.</p>";
+                echo "<p id='mensaje-flash' class='success-message'>Reserva cancelada exitosamente.</p>";
             }
         }
         ?>
@@ -154,7 +154,7 @@ $usuario_id = $_SESSION['usuario_id'];
                                 <td>{$res['hora']}</td>
                                 <td>
                                     <button class='btn-modify' onclick='modifyReservation({$res['id']})'>Modificar</button>
-                                    <button class='btn-delete' onclick='deleteReservation({$res['id']})'>Eliminar</button>
+                                    <button class='btn-delete' onclick='deleteReservation({$res['id']})'>Cancelar</button>
                                 </td>
                               </tr>";
                     }
