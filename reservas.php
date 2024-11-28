@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="tables">
                     <div class="table available" data-table="1" data-sillas="4">Mesa 1</div>
                     <div class="table available" data-table="2" data-sillas="6">Mesa 2</div>
-                    <div class="table available" data-table="3" data-sillas="4">Mesa 3</div>
+                    <div class="table available" data-table="3" data-sillas="2">Mesa 3</div>
                     <div class="table available" data-table="4" data-sillas="8">Mesa 4</div>
                 </div>
                 <div class="tables">
