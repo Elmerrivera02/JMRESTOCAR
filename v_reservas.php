@@ -117,7 +117,7 @@ $usuario_id = $_SESSION['usuario_id'];
         }
         ?>
         <div class="header-buttons">
-            <a href="reservas.php"><button>Reservar</button></a>
+            <a href="reservas.php"><button>Nueva Reserva</button></a>
             <a href="menu.php"><button>Inicio</button></a>
         </div>
         <table>
