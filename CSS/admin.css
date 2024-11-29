@@ -1,0 +1,90 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #4D2A2A; /* Fondo marrón oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    height: 70%;
+    background-color: #E0E0E0; /* Fondo gris claro */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background-color: #D3D3D3; /* Fondo gris más oscuro */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    color: #000; /* Texto negro */
+}
+
+/* Logout Button */
+.logout-button {
+    background-color: #000; /* Fondo negro */
+    color: #FFF; /* Texto blanco */
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.logout-button:hover {
+    background-color: #444; /* Cambio al pasar el mouse */
+}
+
+/* Content */
+.content {
+    flex-grow: 1;
+    background-color: #FFF; /* Fondo blanco */
+    margin: 10px;
+    border-radius: 4px;
+}
+/* Tabla de usuarios */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
