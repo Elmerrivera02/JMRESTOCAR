@@ -1,8 +1,24 @@
 <?php
-    session_start();
-    if(isset($_SESSION['usuario'])){
-        header("location: menu.php");
-    }
+session_start();
+
+// Verificar si el usuario ha hecho clic en el botón de "Cerrar Sesión"
+if (isset($_POST['logout'])) {
+    // Eliminar todas las variables de sesión
+    session_unset();
+
+    // Destruir la sesión
+    session_destroy();
+
+    // Redirigir al inicio de sesión
+    header("Location: index.php");
+    exit();
+}
+
+// Si ya hay un usuario autenticado, redirigir al menú
+if (isset($_SESSION['usuario'])) {
+    header("Location: menu.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>

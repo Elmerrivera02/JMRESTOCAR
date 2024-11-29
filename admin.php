@@ -2,6 +2,14 @@
 // Incluir la conexión a la base de datos
 include 'php/conexion_be.php';
 
+session_start();
+
+// Verificar si el usuario está autenticado y es administrador
+if (!isset($_SESSION['usuario_id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != true) {
+    header("Location: index.php"); // Redirigir al inicio de sesión si no es administrador
+    exit();
+}
+
 // Verificar si se ha recibido el ID del usuario para eliminar
 if (isset($_POST['delete_user'])) {
     $user_id = $_POST['user_id'];
@@ -79,7 +87,7 @@ if (!$result) {
             <form method="GET" action="admin_reservas.php">
                 <button type="submit" class="button">Reservas</button>
             </form>
-            <form method="POST" action="logout.php">
+            <form method="POST" action="index.php">
                 <button type="submit" name="logout" class="button">Cerrar Sesión</button>
             </form>
         </header>

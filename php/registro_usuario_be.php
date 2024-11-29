@@ -39,6 +39,7 @@ if (mysqli_num_rows($verificar_usuario) > 0) {
 
 // Encriptar la contraseña antes de almacenarla
 $contraseña_hashed = password_hash($contraseña, PASSWORD_BCRYPT);
+echo "Contraseña encriptada: " . $contraseña_hashed;
 
 // Inserción de usuario en la base de datos
 $query = "INSERT INTO usuarios(nombre_completo, correo, usuario, contraseña) 

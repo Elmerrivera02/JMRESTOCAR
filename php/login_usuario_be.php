@@ -19,15 +19,23 @@ if (mysqli_num_rows($result) > 0) {
         // Si la contraseña es correcta, iniciar sesión
         $_SESSION['usuario_id'] = $usuario['id']; // Guardar el ID del usuario en la sesión
         $_SESSION['usuario'] = $correo; // Opcional: guardar también el correo en la sesión
-        header("location: ../menu.php"); // Redirigir al usuario a la página principal o menú
+        
+        // Verificar si el usuario es un administrador
+        if ($usuario['is_admin'] == 1) {
+            $_SESSION['is_admin'] = true; // Almacenar la sesión del admin
+            header("location: ../admin.php"); // Redirigir al administrador
+        } else {
+            $_SESSION['is_admin'] = false;
+            header("location: ../menu.php"); // Redirigir a la página principal de usuarios normales
+        }
         exit;
     } else {
         // Si la contraseña es incorrecta
-        mostrar_alerta_y_redireccionar("Contraseña incorrecta. Por favor, inténtalo de nuevo.", "../menu_principal.php");
+        mostrar_alerta_y_redireccionar("Contraseña incorrecta. Por favor, inténtalo de nuevo.", "../index.php");
     }
 } else {
     // Si el correo no existe
-    mostrar_alerta_y_redireccionar("Usuario no encontrado. Por favor, verifica los datos.", "../menu_principal.php");
+    mostrar_alerta_y_redireccionar("Usuario no encontrado. Por favor, verifica los datos.", "../index.php");
 }
 
 // Cerrar la conexión
