@@ -32,8 +32,8 @@ if (isset($_POST['delete_user'])) {
     }
 }
 
-// Consultar los usuarios de la base de datos
-$query = "SELECT id, nombre_completo, correo, usuario FROM usuarios"; // Nombres correctos según la tabla
+// Consultar los usuarios de la base de datos, excluyendo los administradores (is_admin != 1)
+$query = "SELECT id, nombre_completo, correo, usuario FROM usuarios WHERE is_admin != 1"; // Excluye administradores
 $result = mysqli_query($conexion, $query);
 
 // Verificar si la consulta falló
