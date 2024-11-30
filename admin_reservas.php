@@ -46,7 +46,7 @@ if (!$result) {
             <form method="GET" action="admin.php">
                 <button type="submit" class="button">Usuarios</button>
             </form>
-            <form method="POST" action="logout.php">
+            <form method="POST" action="index.php">
                 <button type="submit" name="logout" class="button">Cerrar Sesión</button>
             </form>
         </header>
